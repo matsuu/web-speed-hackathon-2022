@@ -14,5 +14,5 @@ import React, { useEffect, useState } from "react";
 /** @type {React.VFC<Props>} */
 export const TrimmedImage = ({ height, src, width }) => {
   const imageUrl = src.replace(/(.*)\/([^\/]*)/, '$1/' + width + 'x' + height + '-$2');
-  return <img height={height} src={imageUrl} width={width} />;
+  return <img src={dataUrl} />;
 };
