@@ -24,16 +24,18 @@ const server = fastify({
 server.register(fastifySensible);
 
 server.addHook("onRequest", async (req, res) => {
-  const repo = (await createConnection()).getRepository(User);
+  if (req.url.match(/^\/api/)) {
+    const repo = (await createConnection()).getRepository(User);
 
-  const userId = req.headers["x-app-userid"];
-  if (userId !== undefined) {
-    const user = await repo.findOne(userId);
-    if (user === undefined) {
-      res.unauthorized();
-      return;
+    const userId = req.headers["x-app-userid"];
+    if (userId !== undefined) {
+      const user = await repo.findOne(userId);
+      if (user === undefined) {
+        res.unauthorized();
+        return;
+      }
+      req.user = user;
     }
-    req.user = user;
   }
 });
 
