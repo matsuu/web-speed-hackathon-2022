@@ -43,7 +43,6 @@ server.addHook("onRequest", async (req, res) => {
   if (req.url.match(/^\/api/)) {
     res.header("Cache-Control", "no-cache, no-store, no-transform");
   }
-  res.header("Connection", "close");
 });
 
 server.register(apiRoute, { prefix: "/api" });
