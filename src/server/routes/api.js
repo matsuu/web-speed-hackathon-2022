@@ -80,7 +80,10 @@ export const apiRoute = async (fastify) => {
     }
 
     const races = await repo.find({
-      where,
+      where: where,
+      order: {
+        startAt: 'ASC',
+      },
     });
 
     res.send({ races });

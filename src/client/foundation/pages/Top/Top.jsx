@@ -113,7 +113,10 @@ export const Top = () => {
     authorizedJsonFetcher,
   );
 
-  const { data: raceData } = useFetch("/api/races", jsonFetcher);
+  const since = moment(date).startOf('days').unix();
+  const until = moment(date).endOf('days').unix();
+  const url = "/api/races?since=" + since + "&until=" + until;
+  const { data: raceData } = useFetch(url, jsonFetcher);
 
   const handleClickChargeButton = useCallback(() => {
     if (chargeDialogRef.current === null) {
@@ -130,13 +133,6 @@ export const Top = () => {
   const todayRaces =
     raceData != null
       ? [...raceData.races]
-          .sort(
-            (/** @type {Model.Race} */ a, /** @type {Model.Race} */ b) =>
-              moment(a.startAt) - moment(b.startAt),
-          )
-          .filter((/** @type {Model.Race} */ race) =>
-            isSameDay(race.startAt, date),
-          )
       : [];
   const todayRacesToShow = useTodayRacesWithAnimation(todayRaces);
   const heroImageUrl = useHeroImage(todayRaces);
