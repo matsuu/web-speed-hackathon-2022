@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { EntryCombination } from "../../../../../components/displays/EntryCombination";
 import { Color, FontSize, Space } from "../../../../../styles/variables";
@@ -60,7 +62,7 @@ export const BettingTicketList = ({ children }) => {
   if (React.Children.count(children) === 0) {
     return (
       <Placeholder>
-        <i className="fas fa-ticket-alt" />
+        <FontAwesomeIcon icon={faTicketAlt} />
         <div>購入した拳券はありません</div>
       </Placeholder>
     );
