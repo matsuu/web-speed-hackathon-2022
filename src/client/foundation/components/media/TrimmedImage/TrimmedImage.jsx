@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 /**
  * アスペクト比を維持したまま、要素のコンテンツボックス全体を埋めるように拡大縮小したサイズを返す
@@ -40,7 +41,7 @@ const calcImageSize = (cv, img) => {
 export const TrimmedImage = ({ height, src, width }) => {
   const imageUrl = src.replace(/(.*)\/([^\/]*)/, '$1/' + width + 'x' + height + '-$2');
   if (width == 100) {
-    return <img height={height} src={imageUrl} width={width} />;
+    return <LazyLoadImage height={height} src={imageUrl} width={width} />;
   }
 
   const [dataUrl, setDataUrl] = useState(null);
@@ -70,5 +71,5 @@ export const TrimmedImage = ({ height, src, width }) => {
     };
   }, [height, src, width]);
 
-  return <img src={dataUrl} />;
+  return <LazyLoadImage src={dataUrl} />;
 };

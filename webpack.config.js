@@ -3,6 +3,7 @@ const path = require("path");
 
 const CompressionPlugin = require("compression-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodeExternals = require("webpack-node-externals");
 
 function abs(...args) {
@@ -52,11 +53,21 @@ module.exports = [
     name: "client",
     output: {
       path: DIST_PUBLIC,
+      publicPath: "/",
+    },
+    optimization: {
+      splitChunks: {
+	chunks: "all",
+      },
     },
     plugins: [
       new CompressionPlugin(),
       new CopyPlugin({
         patterns: [{ from: PUBLIC_ROOT, to: DIST_PUBLIC }],
+      }),
+      new HtmlWebpackPlugin({
+        inject: true,
+        template: SRC_ROOT + "/index.html",
       }),
     ],
     resolve: {
