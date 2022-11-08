@@ -25,7 +25,7 @@ const server = fastify({
 server.register(fastifySensible);
 
 server.addHook("onRequest", async (req, res) => {
-  if (req.url.match(/^\/api/)) {
+  if (req.url.match(/users|betting|initialize/)) {
     const repo = (await createConnection()).getRepository(User);
 
     const userId = req.headers["x-app-userid"];
@@ -42,7 +42,11 @@ server.addHook("onRequest", async (req, res) => {
 
 server.addHook("onRequest", async (req, res) => {
   if (req.url.match(/^\/api/)) {
-    res.header("Cache-Control", "no-cache, no-store, no-transform");
+    if (req.url.match(/users|betting|initialize/)) {
+      res.header("Cache-Control", "no-cache, no-store");
+    } else {
+      res.header("Cache-Control", "public, max-age=60");
+    }
   }
 });
 
