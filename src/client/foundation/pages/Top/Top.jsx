@@ -88,7 +88,7 @@ function useHeroImage(todayRaces) {
     return null;
   }
 
-  const imageUrl = '/assets/images/1024-hero.jpg';
+  const imageUrl = '/assets/images/hero.avif';
   return imageUrl;
 }
 

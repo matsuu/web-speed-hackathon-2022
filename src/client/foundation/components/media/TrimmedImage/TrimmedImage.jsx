@@ -38,7 +38,7 @@ const calcImageSize = (cv, img) => {
 
 /** @type {React.VFC<Props>} */
 export const TrimmedImage = ({ height, src, width }) => {
-  const imageUrl = src.replace(/(.*)\/([^\/]*)/, '$1/' + width + 'x' + height + '-$2');
+  const imageUrl = src.replace(/(.*)\/([^\/]*)\.jpg/, '$1/' + width + 'x' + height + '-$2.avif');
   if (width == 100) {
     return <img height={height} src={imageUrl} width={width} loading="lazy" decoding="async" />;
   }
