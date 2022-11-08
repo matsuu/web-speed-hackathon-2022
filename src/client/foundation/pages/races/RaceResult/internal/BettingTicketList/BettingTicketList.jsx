@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTicketAlt } from '@fortawesome/free-solid-svg-icons/faTicketAlt';
 
 import { EntryCombination } from "../../../../../components/displays/EntryCombination";
 import { Color, FontSize, Space } from "../../../../../styles/variables";
