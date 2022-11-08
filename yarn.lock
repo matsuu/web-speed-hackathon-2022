@@ -9940,7 +9940,6 @@ __metadata:
     webpack: ^5.65.0
     webpack-cli: ^4.9.1
     webpack-node-externals: ^3.0.0
-    zengin-code: ^1.0.0-p20220130
   languageName: unknown
   linkType: soft
 
@@ -10278,13 +10277,6 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: b7289084bc1fc74a559b7259faa23d3214b14b538a8843d2b001a35e27147833f4107590b1b44bf5bc7f6dfe6f488660d3a3725f268e09b3925b3476153b7821
-  languageName: node
-  linkType: hard
-
-"zengin-code@npm:^1.0.0-p20220130":
-  version: 1.0.0-p20221023
-  resolution: "zengin-code@npm:1.0.0-p20221023"
-  checksum: 0120aa325e71b7e633784ad94fcdb61a82d369063b27cc5f0490f15e2f39bf27aabcb6867ec0e8030e7944f52e809e1d49a364b7f2bc19d0e82114179a1e3055
   languageName: node
   linkType: hard
 

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
-import zenginCode from "zengin-code";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
 import { Spacer } from "../../../../components/layouts/Spacer";
@@ -8,6 +7,8 @@ import { Stack } from "../../../../components/layouts/Stack";
 import { Heading } from "../../../../components/typographies/Heading";
 import { useMutation } from "../../../../hooks/useMutation";
 import { Space } from "../../../../styles/variables";
+import { useFetch } from "../../../../hooks/useFetch";
+import { jsonFetcher } from "../../../../utils/HttpUtils";
 
 const CANCEL = "cancel";
 const CHARGE = "charge";
@@ -67,6 +68,11 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
     [charge, bankCode, branchCode, accountNo, amount, onComplete, clearForm],
   );
 
+  const zenginUrl = "/assets/json/zengin-code.json";
+  const { data: zenginCode } = useFetch(zenginUrl, jsonFetcher);
+  if (zenginCode == null) {
+    return (<div></div>);
+  }
   const bankList = Object.entries(zenginCode).map(([code, { name }]) => ({
     code,
     name,
