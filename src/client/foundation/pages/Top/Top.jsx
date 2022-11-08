@@ -1,4 +1,5 @@
-import { difference, slice } from "lodash";
+import difference from "lodash/difference";
+import slice from "lodash/slice";
 import moment from "moment-timezone";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
