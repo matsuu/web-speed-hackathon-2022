@@ -42,33 +42,5 @@ export const TrimmedImage = ({ height, src, width }) => {
   if (width == 100) {
     return <img height={height} src={imageUrl} width={width} loading="lazy" />;
   }
-
-  const [dataUrl, setDataUrl] = useState(null);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = width;
-      canvas.height = height;
-
-      const size = calcImageSize(
-        { height: canvas.height, width: canvas.width },
-        { height: img.height, width: img.width },
-      );
-
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(
-        img,
-        -(size.width - canvas.width) / 2,
-        -(size.height - canvas.height) / 2,
-        size.width,
-        size.height,
-      );
-      setDataUrl(canvas.toDataURL());
-    };
-  }, [height, src, width]);
-
-  return <img src={dataUrl} loading="lazy" />;
+  return <img src={imageUrl} loading="lazy" />;
 };
