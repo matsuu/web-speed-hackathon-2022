@@ -40,7 +40,7 @@ const calcImageSize = (cv, img) => {
 export const TrimmedImage = ({ height, src, width }) => {
   const imageUrl = src.replace(/(.*)\/([^\/]*)/, '$1/' + width + 'x' + height + '-$2');
   if (width == 100) {
-    return <img height={height} src={imageUrl} width={width} loading="lazy" />;
+    return <img height={height} src={imageUrl} width={width} loading="lazy" decoding="async" />;
   }
-  return <img src={imageUrl} loading="lazy" />;
+  return <img src={imageUrl} loading="lazy" decoding="async" />;
 };
