@@ -1,6 +1,5 @@
 import difference from "lodash/difference";
 import slice from "lodash/slice";
-import moment from "moment-timezone";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -94,7 +93,7 @@ function useHeroImage(todayRaces) {
 
 /** @type {React.VFC} */
 export const Top = () => {
-  const { date = moment().format("YYYY-MM-DD") } = useParams();
+  const { date = new Date().toLocaleString("ja-JP", {year: "numeric", month: "2-digit", day: "2-digit"}).split("/").join("-") } = useParams();
 
   const ChargeButton = styled.button`
     background: ${Color.mono[700]};
@@ -114,8 +113,8 @@ export const Top = () => {
     authorizedJsonFetcher,
   );
 
-  const since = moment(date).startOf('days').unix();
-  const until = moment(date).endOf('days').unix();
+  const since = Date.parse(date + " 00:00:00") / 1000;
+  const until = since + 86399;
   const url = "/api/races?since=" + since + "&until=" + until;
   const { data: raceData } = useFetch(url, jsonFetcher);
 
