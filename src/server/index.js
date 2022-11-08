@@ -45,7 +45,7 @@ server.addHook("onRequest", async (req, res) => {
     if (req.url.match(/users|betting|initialize/)) {
       res.header("Cache-Control", "no-cache, no-store");
     } else {
-      res.header("Cache-Control", "public, max-age=60");
+      res.header("Cache-Control", "public, max-age=31536000");
     }
   }
 });
