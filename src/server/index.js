@@ -49,6 +49,10 @@ server.addHook("onRequest", async (req, res) => {
       res.header("Cache-Control", "public, max-age=31536000");
     }
   }
+  if (req.url === "/") {
+    const imageUrl = "/assets/images/hero.avif";
+    res.header("Link", `<${imageUrl}>;rel="preload";as="image"`)
+  }
 });
 
 server.register(apiRoute, { prefix: "/api" });
