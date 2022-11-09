@@ -42,5 +42,5 @@ export const TrimmedImage = ({ height, src, width }) => {
   if (width == 100) {
     return <img height={height} src={imageUrl} width={width} loading="lazy" decoding="async" />;
   }
-  return <img src={imageUrl} loading="lazy" decoding="async" />;
+  return <img src={imageUrl} decoding="async" />;
 };
