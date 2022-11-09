@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
@@ -104,9 +104,11 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
             </datalist>
 
             {bank != null && (
-              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-                銀行名: {bank.name}銀行
-              </motion.div>
+              <LazyMotion features={domAnimation}>
+                <m.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+                  銀行名: {bank.name}銀行
+                </m.div>
+              </LazyMotion>
             )}
 
             <label>
@@ -128,9 +130,11 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
             </datalist>
 
             {branch && (
-              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-                支店名: {branch.name}
-              </motion.div>
+              <LazyMotion features={domAnimation}>
+                <m.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+                  支店名: {branch.name}
+                </m.div>
+              </LazyMotion>
             )}
 
             <label>
