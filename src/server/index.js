@@ -23,6 +23,7 @@ const server = fastify({
       },
 });
 server.register(fastifySensible);
+server.register(require('fastify-compress'));
 
 server.addHook("onRequest", async (req, res) => {
   if (req.url.match(/users|betting|initialize/)) {
