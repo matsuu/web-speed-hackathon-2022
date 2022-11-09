@@ -77,20 +77,6 @@ function useTodayRacesWithAnimation(races) {
   return racesToShow;
 }
 
-/**
- * @param {Model.Race[]} todayRaces
- * @returns {string | null}
- */
-function useHeroImage(todayRaces) {
-  const firstRaceId = todayRaces[0]?.id;
-  if (firstRaceId === undefined) {
-    return null;
-  }
-
-  const imageUrl = '/assets/images/hero.avif';
-  return imageUrl;
-}
-
 /** @type {React.VFC} */
 export const Top = () => {
   const { date = new Date().toLocaleString("ja-JP", {year: "numeric", month: "2-digit", day: "2-digit"}).split("/").join("-") } = useParams();
@@ -135,7 +121,7 @@ export const Top = () => {
       ? [...raceData.races]
       : [];
   const todayRacesToShow = useTodayRacesWithAnimation(todayRaces);
-  const heroImageUrl = useHeroImage(todayRaces);
+  const heroImageUrl = '/assets/images/hero.avif';
 
   return (
     <Container>
