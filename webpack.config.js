@@ -5,6 +5,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodeExternals = require("webpack-node-externals");
+const zlib = require("zlib");
 
 function abs(...args) {
   return path.join(__dirname, ...args);
@@ -61,7 +62,19 @@ module.exports = [
       },
     },
     plugins: [
-      new CompressionPlugin(),
+      new CompressionPlugin({
+        filename: "[path][base].br",
+        algorithm: "brotliCompress",
+        test: /\.(js|json|css|html|svg|woff2)$/,
+        compressionOptions: {
+          params: {
+            [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+          },
+        },
+        threshold: 1024,
+        minRatio: 0.8,
+        deleteOriginalAssets: false,
+      }),
       new CopyPlugin({
         patterns: [{ from: PUBLIC_ROOT, to: DIST_PUBLIC }],
       }),
