@@ -29,9 +29,9 @@ export const RaceLayout = () => {
   return (
     <Container>
       <Spacer mt={Space * 2} />
-      <Heading as="h1">{data?.name ?? ''}</Heading>
+      <Heading as="h1">{data?.name ?? '　'}</Heading>
       <p>
-        開始 {formatTime(data?.startAt) ?? '2022-11-01'} 締切 {formatTime(data?.closeAt ?? '2022-11-01')}
+        開始 {formatTime(data?.startAt ?? '2022-11-01')} 締切 {formatTime(data?.closeAt ?? '2022-11-01')}
       </p>
 
       <Spacer mt={Space * 2} />
@@ -39,7 +39,7 @@ export const RaceLayout = () => {
       <Section dark shrink>
         <LiveBadge>Live</LiveBadge>
         <Spacer mt={Space * 2} />
-        <TrimmedImage height={225} src={data?.image ?? ''} width={400} />
+        <TrimmedImage height={225} src={data?.image ?? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADhCAQAAABMvyuXAAAByUlEQVR42u3TMQ0AAAzDsJU/6SHo28uGECk5oIoEYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIGAQwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQcAggEHAIGAQMAgYBAwCBgGDgEEAg4BBwCBgEDAIGAQMAgYBg4BBAIOAQcAgYBAwCBgEDAIGAYMABgGDgEHAIGAQMAgYBAwCBgGDAAYBg4BBwCBgEDAIGAQMAgYBg0gABgGDgEHAIGAQMAgYBAwCBgEMAgYBg4BBwCBgEDAIGAQMAgYBDAIGAYOAQcAgYBAwCBgEDAIYBAwCBgGDgEHAIGAQMAgYBAwCGAQMAgYBg4BBwCBgEDAIGAQwCBgEDAIGAYOAQcAgYBAwCBgEMAgYBAwCBgGDgEHAIGAQMAhgEDAIGAQMAgYBg4BBwCBgEDAIYBAwCBgEDAIGAYOAQcAgYBAwiARgEDAIGAQMAgYBg4BBwCBgEMAgYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIIBBwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQQCDgEHAIGAQmHuSyQDisCaXtQAAAABJRU5ErkJggg=='} width={400} />
       </Section>
 
       <Spacer mt={Space * 2} />
