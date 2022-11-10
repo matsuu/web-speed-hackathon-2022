@@ -44,7 +44,7 @@ function useTodayRacesWithAnimation(races) {
       return;
     }
 
-    numberOfRacesToShow.current = 0;
+    numberOfRacesToShow.current = 3;
     if (timer.current !== null) {
       clearInterval(timer.current);
     }
