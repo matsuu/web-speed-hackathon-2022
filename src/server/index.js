@@ -51,7 +51,13 @@ server.addHook("onRequest", async (req, res) => {
   }
   if (req.url === "/") {
     const imageUrl = "/assets/images/hero.avif";
-    res.header("Link", `<${imageUrl}>;rel="preload";as="image"`)
+
+    const { date = new Date().toLocaleString("ja-JP", {year: "numeric", month: "2-digit", day: "2-digit"}).split("/").join("-") } = req.query;
+    const since = Date.parse(date + " 00:00:00") / 1000;
+    const until = since + 86399;
+    const jsonUrl = `/api/races?since=${since}&until=${until}`;
+    res
+      .header("Link", `<${imageUrl}>;rel="preload";as="image",<${jsonUrl}>;rel="preload";as="fetch";crossorigin="anonymous"`)
   }
 });
 

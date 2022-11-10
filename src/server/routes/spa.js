@@ -21,9 +21,13 @@ export const spaRoute = async (fastify) => {
 
   fastify.get("/races/:raceId/*", async (req, reply) => {
     const repo = (await createConnection()).getRepository(Race);
-    const race = await repo.findOne(req.params.raceId);
+    const raceId = req.params.raceId;
+    const race = await repo.findOne(raceId);
     const imageUrl = race.image.replace(/(.*)\/([^\/]*)\.jpg/, '$1/400x225-$2.avif');
-    return reply.header("Link", `<${imageUrl}>;rel="preload";as="image"`).sendFile("index.html", join(__dirname, "public"));
+    const jsonUrl = `/api/races/${raceId}`;
+    return reply
+      .header("Link", `<${imageUrl}>;rel="preload";as="image",<${jsonUrl}>;rel="preload";as="fetch";crossorigin="anonymous"`)
+      .sendFile("index.html", join(__dirname, "public"));
   });
 
   fastify.get("*", (_req, reply) => {
