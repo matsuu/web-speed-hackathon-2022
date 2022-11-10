@@ -1,6 +1,4 @@
-import difference from "lodash/difference";
-import slice from "lodash/slice";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,18 +22,14 @@ import { RecentRaceList } from "./internal/RecentRaceList";
  */
 function useTodayRacesWithAnimation(races) {
   const [isRacesUpdate, setIsRacesUpdate] = useState(false);
-  const [racesToShow, setRacesToShow] = useState([]);
+  const [_racesToShow, setRacesToShow] = useState([]);
+  const racesToShow = useMemo(() => _racesToShow, [_racesToShow]);
   const numberOfRacesToShow = useRef(0);
   const prevRaces = useRef(races);
   const timer = useRef(null);
 
   useEffect(() => {
-    const isRacesUpdate =
-      difference(
-        races.map((e) => e.id),
-        prevRaces.current.map((e) => e.id),
-      ).length !== 0;
-
+    const isRacesUpdate = races.length !== prevRaces.current.length;
     prevRaces.current = races;
     setIsRacesUpdate(isRacesUpdate);
   }, [races]);
@@ -62,7 +56,7 @@ function useTodayRacesWithAnimation(races) {
       }
 
       numberOfRacesToShow.current++;
-      setRacesToShow(slice(races, 0, numberOfRacesToShow.current));
+      setRacesToShow(races.slice(0, numberOfRacesToShow.current));
     }, 100);
   }, [isRacesUpdate, races]);
 
