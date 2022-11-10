@@ -19,18 +19,6 @@ export const spaRoute = async (fastify) => {
     throw fastify.httpErrors.notFound();
   });
 
-  fastify.get("/races/:raceId/odds", async (req, reply) => {
-    const repo = (await createConnection()).getRepository(Race);
-    const raceId = req.params.raceId;
-    const race = await repo.findOne(raceId);
-    const imageUrl = race.image.replace(/(.*)\/([^\/]*)\.jpg/, '$1/400x225-$2.avif');
-    const jsonUrl = `/api/races/${raceId}`;
-    const fontUrl = '/assets/fonts/MODI_Senobi-Gothic_2017_0702/Senobi-Gothic-Bold.woff2';
-    return reply
-      .header("Link", `<${imageUrl}>;rel="preload";as="image",<${jsonUrl}>;rel="preload";as="fetch";crossorigin="anonymous",<${fontUrl}>;rel="preload";as="font";crossorigin="anonymous"`)
-      .sendFile("index.html", join(__dirname, "public"));
-  });
-
   fastify.get("/races/:raceId/*", async (req, reply) => {
     const repo = (await createConnection()).getRepository(Race);
     const raceId = req.params.raceId;
