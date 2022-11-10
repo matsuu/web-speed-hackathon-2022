@@ -153,7 +153,9 @@ export const Top = () => {
         )}
       </section>
 
-      <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} />
+      { userData && (
+        <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} />
+      )}
     </Container>
   );
 };
