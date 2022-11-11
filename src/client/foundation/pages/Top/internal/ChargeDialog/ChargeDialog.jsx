@@ -1,5 +1,5 @@
-import { LazyMotion, domAnimation, m } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
+import styled, { keyframes } from "styled-components";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
 import { Spacer } from "../../../../components/layouts/Spacer";
@@ -12,6 +12,14 @@ import { jsonFetcher } from "../../../../utils/HttpUtils";
 
 const CANCEL = "cancel";
 const CHARGE = "charge";
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+const FadeIn = styled.div`
+  animation: ${fadeIn} 1s;
+`;
 
 /**
  * @typedef Props
@@ -104,11 +112,11 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
             </datalist>
 
             {bank != null && (
-              <LazyMotion features={domAnimation}>
-                <m.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+              <FadeIn>
+                <div>
                   銀行名: {bank.name}銀行
-                </m.div>
-              </LazyMotion>
+                </div>
+              </FadeIn>
             )}
 
             <label>
@@ -130,11 +138,11 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
             </datalist>
 
             {branch && (
-              <LazyMotion features={domAnimation}>
-                <m.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+              <FadeIn>
+                <div>
                   支店名: {branch.name}
-                </m.div>
-              </LazyMotion>
+                </div>
+              </FadeIn>
             )}
 
             <label>
