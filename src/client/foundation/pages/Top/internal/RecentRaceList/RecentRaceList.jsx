@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styled from "styled-components";
 
 import { LinkButton } from "../../../../components/buttons/LinkButton";
@@ -101,4 +101,5 @@ const Item = ({ race }) => {
     </ItemWrapper>
   );
 };
-RecentRaceList.Item = Item;
+const MemoItem = memo(Item, (prev, next) => prev.id === next.id);
+RecentRaceList.Item = MemoItem;
