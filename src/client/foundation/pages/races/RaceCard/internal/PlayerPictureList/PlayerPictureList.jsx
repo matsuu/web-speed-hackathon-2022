@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 
 import { Stack } from "../../../../../components/layouts/Stack";
@@ -50,4 +50,5 @@ export const PlayerPictureList = ({ children }) => {
     </Stack>
   );
 };
-PlayerPictureList.Item = Item;
+const MemoItem = memo(Item);
+PlayerPictureList.Item = MemoItem;
