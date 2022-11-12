@@ -43,11 +43,7 @@ server.addHook("onRequest", async (req, res) => {
 
 server.addHook("onRequest", async (req, res) => {
   if (req.url.match(/^\/api/)) {
-    if (req.url.match(/users|betting|initialize/)) {
-      res.header("Cache-Control", "no-cache, no-store");
-    } else {
-      res.header("Cache-Control", "public, max-age=31536000");
-    }
+    res.header("Cache-Control", "no-cache, no-store");
   }
   if (req.url === "/") {
     const imageUrl = "/assets/images/hero.avif";
